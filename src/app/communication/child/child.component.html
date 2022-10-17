@@ -1,0 +1,7 @@
+<h1>Child Component</h1>
+<br><br>
+<input type="text" #name>
+<br><br>
+<button class="btn btn-dark" (click)="passChildToParent(name)">Child To Parent</button>
+<br><br>
+<h3>Received Data From Parent : <b>{{sendDataToChild}}</b></h3>

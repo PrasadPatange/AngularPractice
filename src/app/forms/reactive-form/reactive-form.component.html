@@ -1,0 +1,73 @@
+<div class="container mt-5">
+    <h1>Reactive Form </h1>
+    <form [formGroup]="userForm"(ngSubmit)="submit()" class="form mt-5 pt-5">
+        <div class="formControl">
+            <label>
+                Name : 
+            </label>&nbsp;
+            <input type="text" formControlName="name" placeholder="Enter Name">
+            <div
+             class="text-danger"
+             *ngIf="formControls['name'].touched && formControls['name'].invalid"
+            >
+              <label
+              *ngIf="formControls['name'].hasError('required')" 
+              >*Name required
+            </label>
+            </div>
+        </div>
+        <div class="formControl">
+            <label>
+                Email : 
+            </label>&nbsp;
+            <input type="email" formControlName="email" placeholder="Enter Email">
+            <div
+             class="text-danger"
+             *ngIf="formControls['email'].touched && formControls['email'].invalid" 
+             >
+             <label
+             *ngIf="formControls['email'].hasError('required')" 
+             >
+             *Email Required
+            </label>
+            </div>
+        </div>
+        <div class="formControl">
+            <label>
+                Password : 
+            </label>&nbsp;
+            <input type="password" formControlName="password" placeholder="Enter Password">
+            <div
+             class="text-danger"
+             *ngIf="formControls['password'].touched && formControls['password'].invalid"
+             >
+             <label 
+             *ngIf="formControls['password'].hasError('required')"
+             >
+             *Password Required
+            </label>
+            </div>
+        </div>
+      
+        <br><hr>
+        <!-- Dynamic Form Using FormArray : -->
+        <div formArrayName="addDynamicEle">
+           <h2>Add Name :</h2>
+           <button class="btn btn-primary" [disabled]="enable" (click)="add()"> Add </button> 
+           &nbsp;
+           <button class="btn btn-danger" (click)="remove()"> remove </button> 
+           <br>
+           <hr>
+            <ul [ngStyle]="{'list-style': 'none'}">
+                <li *ngFor="let item of addDynamic.controls ; let i = index;">
+                    <br>
+                    <b>{{ i + 1}}</b>&nbsp; <input type="text" [formControlName]="i">
+                </li>
+            </ul>
+        </div>
+        
+        <div class="button">
+            <button class="btn btn-dark" [disabled]="!userForm.valid">Submit</button>
+        </div>
+    </form>
+</div>

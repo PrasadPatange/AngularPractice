@@ -1,0 +1,13 @@
+1) Create Custom Directve =>
+   cmd =>  ng g directive <directive_name>
+
+2) Create Lazy Loading Module =>
+    cmd => ng g m <Module_Name> --route <Module_Name> --module app.module
+
+Automatically create Path in routing file.
+
+3) All Angular Generate Commands =>
+     https://angular.io/cli/generate
+
+4) Create Interceptor =>
+     cmd => ng generate interceptor <interceptor_name>

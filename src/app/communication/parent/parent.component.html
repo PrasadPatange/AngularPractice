@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>Parent Component</h1>
+            <br><br>
+            <input type="text" #name>
+            <br><br>
+            <button class="btn btn-dark" (click)="passParentToChild(name)">Parent To Child</button>
+            <br><br>
+            <h3>Received Data From Child : <b>{{childData}}</b></h3>
+        </div>
+        <div class="col">
+            <app-child
+            [sendDataToChild]="parentData"
+            (sentDataToParent)="dataFromChild($event)"
+            >
+            </app-child>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <h2>Parent Component View Child : DOM Manipulaton</h2>
+            <h3>ViewChild Content : <b #viewcontent>View Child Parent</b> </h3>
+            <br>
+            <button class="btn btn-primary" (click)="changeText()">Change TextProperty From Parent </button>
+            <br><br>
+            <button class="btn btn-dark" (click)="callChild()">Call ViewChild Component Function From Parent </button>
+        </div>
+        <div class="col">
+            <app-view-child></app-view-child>
+            <br>
+        </div>
+    </div>
+</div>

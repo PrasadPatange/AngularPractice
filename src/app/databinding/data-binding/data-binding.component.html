@@ -1,0 +1,140 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6 border">
+            <h2>Interpolation :- </h2>
+            <h2 class="text-center">TS(component) ==> HTML(View) </h2>
+            <h5>1) String Interpolation always works on string not boolean and other datatypes :- </h5>
+            <p>Enter Name :-<b>{{dynName}}</b></p>
+            <br>
+            <h5>2) Expresssion :- </h5>
+           <b>{{name}}</b>
+           <br>
+            10 + 20 = <b>{{10+20}}</b>
+            <br>
+            10 - 20 = <b>{{10-20}}</b>
+            <br>
+            10 * 20 = <b>{{10*20}}</b>
+            <br>
+            10 / 20 = <b>{{10/20}}</b>
+            <br>
+            <br>
+            <h5>3) String Concatination :- </h5>
+            <b>{{"welcome " + dynName}}</b>
+            <br><br>
+            <h5>4) Use js inbuild property :-</h5>
+           <b> {{dynName.length}}</b>
+            <br><br>
+            <h5>5) Use js inbuild functions :-</h5>
+           <b> {{dynName.toUpperCase()}}</b>
+            <br><br>
+            <h5>6) Use  custom functions :-</h5>
+           <b> {{myFun()}}</b>
+            <br><br>
+            <h5>6) Use  ternary Operator :-</h5>
+          <p>My Status is : <b>{{Status ? "Online" : "Offline"}}</b></p>
+          <p>My Status is : <b>{{Status ? status1 : status2}}</b></p>
+          <p>My Name: <b>{{myName}}</b></p>
+          <button class="btn btn-primary" (click)="showFun()">{{wifi ? "Wifi Off" : "Wifi On"}}</button>
+          <p>Wifi : <b>{{wifi ? "On" : "Off"}}</b></p>
+        </div>
+
+        <!-- ********** Property Binding ******************** -->
+
+        <div class="col-md-6 border">
+            <h2>Property Binding :- </h2>
+            <h2 class="text-center">TS(component) ==> HTML(View) </h2>
+            <h5>1) Property Binding  use only with attributes with [ ] :-</h5>
+            <input type="text" [value]="dynName">
+            <br><br>
+            <input type="text" [disabled]="true" [value]="Status ? status1 : status2" >
+            <br><br>
+            <input type="text" [disabled]="enabled" [value]="dynName">
+            <br><br>
+            <input type="text"  [disabled]="!enabled" [value]="dynName">
+            <br><br>
+            <input type="text" [hidden]="false" [value]="dynName">
+            <br><br>
+            <input type="text" [value]="name">
+            <br><br>
+            <input type="text" [value] = "myName">
+            <br><br>
+            <input type="text" [disabled]="true" [value]="myName">
+            <br><br>
+            <input type="text" [hidden] = "false" [value] = "myName">
+        </div>
+    </div>
+    <hr>
+
+  <!-- *************** Build In Directives ******************* -->
+
+    <div class="row">
+        <div class="col-md-6 border">
+            <div class="text-center">
+                <h1>Build in Directives :- </h1>
+                <h2 class="text-center">TS(component) ==> HTML(View) </h2>
+            </div>
+            <h2>3) Style and Class Binding :- </h2>
+            <div [ngClass]="multiClass" [ngStyle]="multiStyle" >Class And Style Binding</div>
+            <br>
+            <div [ngClass]="addBackground"  [ngStyle]="{'color':'yellow'}">Add Class and Style Using [ngClass] and [ngStyle] Build in Attribute</div>
+        </div>
+
+        <!-- ************ Event Binding ********************** -->
+        <div class="col-md-6 border">
+            <h2>4) Event Binding :- </h2>
+            <h2 class="text-center">TS(component) <== HTML(View) </h2>
+            <br>
+            <div class="text-center">
+                <button value="Laptop" class="btn btn-dark mx-3" (click)="onAddToCart($event)">Laptop</button>
+                <button value="TV" class="btn btn-dark  mx-3" (click)="onAddToCart($event)">TV</button>
+                <button value="Mobile" class="btn btn-dark  mx-3" (click)="onAddToCart($event)">Mobile</button>
+            </div>
+            <br>
+            <hr>
+            <div class="text-center"><h5>{{message}}</h5></div>
+            <br>
+            <hr>
+
+            <div class="text-center">
+                <button value="Laptop" class="btn btn-dark" (click)="Buy($event)">Laptop Buy</button>
+            </div>
+            <hr>
+            <h5 class="text-center">{{buyMsg}}</h5>
+            <br>
+            <hr>
+
+            <!-- ******************* Template Reference ****************** -->
+            
+            <div class="text-center">
+                <h3>Template reference / Local reference Variable :- use to pass value of ele1 into another </h3>
+                <input type="text"  #inputText value="Pro" name="Prasad">
+                <br><br>
+                <button class="btn btn-warning" (click)="myClick(inputText)">Temp Ref</button>
+                <br><br>
+                {{Text}}
+            </div>
+        </div>
+    </div>
+    
+    <hr>
+    
+    <!-- ******************* Two Way Data Binding ****************** -->
+
+    <div class="row border">
+        <div class="col-md-12 text-center">
+            <h1>Two Way Data Binding :- for this use FormsModule in app.module.ts </h1>
+            <h2>TS(component) <==> HTML(View) </h2>
+            <br>
+            <input type="text" value="Two way" [(ngModel)]="UName">
+            <br>
+            <h5>{{UName}}</h5>
+            <br>
+            <hr>
+            <input type="text" [(ngModel)]="product">
+            <br><br>
+            <h5>{{product}}</h5>
+
+        </div>
+    </div>
+   
+</div>
