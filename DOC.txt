@@ -2,7 +2,7 @@
    cmd =>  ng g directive <directive_name>
 
 2) Create Lazy Loading Module =>
-    cmd => ng g m <Module_Name> --route <Module_Name> --module app.module
+    cmd => ng g m <Module_Name> --route <Module_Route> --module app.module
 
 Automatically create Path in routing file.
 
