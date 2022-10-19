@@ -1,16 +1,99 @@
 <div class="container mt-5">
-    <div class="row">
-        <div class="col">
-            <h3>Component Directive</h3>
-            <h5>@Component</h5>
-        </div>
-        <div class="col">
-            <h3>Structure Directive</h3>
-            <h5>*ngIf | *ngFor | *ngSwitch</h5>
-        </div>
-        <div class="col">
-            <h3>Attribute Directive</h3>
-            <h5>[ngStyle] | [ngClass]</h5>
-        </div>
+  <div class="row">
+    <div class="col">
+      <h3>Component Directive</h3>
+      <h5>@Component</h5>
+      <br />
+      <h4>- Component directives are used in the main class.</h4>
+      <h4>
+        - They contain the detail of how the component should be
+        processed,initiated, and used at runtime.
+      </h4>
     </div>
+
+    <div class="col">
+      <h3>Attribute Directive</h3>
+      <h4>
+        - Attribute directives are used to change the look and behavior of the
+        DOM elements.
+      </h4>
+
+      <h5>[ngStyle] | [ngClass]</h5>
+      <br>
+      <h3 [ngStyle]="{'color' : 'navy'}">[ngStyle]</h3>
+      <h3 [ngClass]="attr">[ngClass]</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="text-center">
+      <h3>Structure Directive</h3>
+      <h5>*ngIf | *ngFor | *ngSwitch</h5>
+      <h4>- Structural directives start with the ‘*’ sign.</h4>
+      <h4>
+        - These directives are used to change the structure of the DOM elements.
+      </h4>
+    </div>
+
+    <div class="col center">
+      <h1>*ngIf</h1>
+      <br />
+      <button class="btn btn-primary" (click)="toggle()">
+        {{ showBox ? "Hide" : "Show" }}
+      </button>
+      <br /><br />
+      <div *ngIf="showBox" class="box center">
+        <h3 class="mt-5">Show Box</h3>
+      </div>
+    </div>
+    <div class="col">
+      <h1>*ngFor</h1>
+      <br />
+      <div class="text-center">
+        <ul class="order">
+          <li *ngFor="let name of nameArr">
+            <h4>{{ name }}</h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <h1>*ngSwitch</h1>
+      <br />
+      <h2>Hey! Good Morning</h2>
+      <br />
+      <div [ngSwitch]="day">
+        <div *ngSwitchCase="'0'">
+          <h3>Today is Sunday! You deserve a break.</h3>
+        </div>
+        <div *ngSwitchCase="'1'">
+          <h3>Today is Monday, Hope you have productive Week.</h3>
+        </div>
+        <div *ngSwitchCase="'2'">
+          <h3>Today is Tuesday, Smash your Goals.</h3>
+        </div>
+        <div *ngSwitchCase="'3'">
+          <h3>Today is Wednesday, You're already half way through.</h3>
+        </div>
+        <div *ngSwitchCase="'4'">
+          <h3>Today is Thursday, It's like Friday Lite.</h3>
+        </div>
+        <div *ngSwitchCase="'5'"><h3>Today is Friday, TGIF!!!</h3></div>
+        <div *ngSwitchCase="'6'">
+          <h3>Today is Saturday, Let's Party!! :)</h3>
+        </div>
+        <div *ngSwitchDefault><h3>Uh oh! Somethings wrong</h3></div>
+      </div>
+      <br />
+     <b> Input string :</b> <input type="text" [(ngModel)]="num" />
+
+      <div [ngSwitch]="num">
+        <div *ngSwitchCase="'1'">One</div>
+        <div *ngSwitchCase="'2'">Two</div>
+        <div *ngSwitchCase="'3'">Three</div>
+        <div *ngSwitchCase="'4'">Four</div>
+        <div *ngSwitchCase="'5'">Five</div>
+        <div *ngSwitchDefault>This is Default</div>
+      </div>
+    </div>
+  </div>
 </div>

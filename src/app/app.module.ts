@@ -20,6 +20,7 @@ import { ViewChildComponent } from './communication/view-child/view-child.compon
 import { HighlightsDirective } from './directives/highlights.directive';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from './Interceptor/header.interceptor';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HeaderInterceptor } from './Interceptor/header.interceptor';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
