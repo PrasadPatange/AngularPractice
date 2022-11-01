@@ -1,4 +1,4 @@
-RxJS :
+* RxJS :
  
  1. Reactive Programming is a new way of building apps
     - Our app will react to changes and handle data streams rather than we write each event handling separately.
