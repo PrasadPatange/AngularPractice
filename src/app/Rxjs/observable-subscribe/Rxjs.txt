@@ -1,0 +1,695 @@
+RxJS :
+ 
+ 1. Reactive Programming is a new way of building apps
+    - Our app will react to changes and handle data streams rather than we write each event handling separately.
+
+
+2. RxJS is a library which help us in making async calls and implement callback mechanisms easily using observables.
+
+3. RxJS Consists of 3 main things : 
+  - Observable
+  - Satelite Data Types : Observers, Schedulers, Subjects.
+  - Operators : 
+     - Array Methods :
+        - map
+        - filter
+        - reduce
+    
+  - Helps us in Data Streams.
+
+4. Observable :
+   - Its a Data Data Streams.
+      - Example #1 : 
+        - In a E-commerce Shopping cart application
+           - orderStatus value = NULL    // Intiallly when order not placed.
+
+           - user comes and places an order
+             - order status will change over time     // data continously changing
+                            - orderStatus = order placed 
+                            - orderStatus = order received
+                            - orderStatus = order processing
+                            - orderStatus = order submitted 
+                            - orderStatus = order completed
+
+               - needs to be informed to multiple apps 
+
+
+  - Subscriber : 
+      - It will listen to the Observable for data changes/updates.
+      - My app is Dashboard
+        - orderStatus = latest value always - since we have subscribe to it.
+
+     - Example #2 : 
+         - YouTube Channel = ABC Tutorials
+          Observable :
+           - Data(Video) is posted every single day on my Channel.
+           - Any changes that happen to my channel.
+           - Content : 
+              - Video
+              - Community Message 
+
+         Subscribe : 
+           - You have subscribed to my Channel  
+             - You get notified everytime I Post a video.
+             - There is a change in data. 
+
+         RxJS Operators : 
+             - filter
+             - map
+
+
+***********************************************************************************************************
+# 3 Observables : 
+
+   1. Observables emits data over a period of time.
+
+   2. Observables needs to be subscribed else it won't do anything on its own!
+
+   3. An Observers has 3 methods namely => next(), complete(), error()
+
+   4. Angular uses Observables extensively under the hood for Routing , Forms and almost all features
+
+   5. A sample Observable is defined as follows : 
+       
+       agents = new Observable(
+        function(observer){
+            try{
+                observer.next("Ram");
+                observer.next("Sita");
+            }
+            catch(e){
+                observer.error(e);
+            }
+        }
+       );
+
+       agent.subscribe(data=>{
+        console.log(data);
+       });
+
+************************************************************************************************************************
+# 4 Operators :
+
+  1. Operators are very important part of RxJS.
+
+  2. RxJS library provides a lot of useful Operators which helps us write clean code and reduce lot of effort in writing
+     custom logic - which leads to many bugs actually!.
+
+  3. An Operator is a Pure Function.
+
+  4. What is Pure Function ?
+     - A function will also return same value when passed with same input value.
+     - Has no side effects.
+
+  5. An Operator takes in Observable as Input and Output will also be an Observable.
+
+  Types of Operators : 
+   - There are a lot of Operators to do various types of operations.
+   - We have Operators for below functioning : 
+       - Creation 
+       - Mathematical
+       - Join
+       - Transformation
+       - Filtering
+       - Utility
+       - Conditional
+       - Multicasting
+       - Error handling
+
+    - We Cover 20-25 Operators which are most commonly used.
+
+**************************************************************************************************************************
+Operator # 1 :
+ 
+ # 1 Of Operator :
+
+ 1. Make Observable from a string or array or an Object.
+
+ 2. Where to use it ? 
+   - Whenever we want to pass a variable which has to be Observable instead of Array or String, we use Of Operator.
+
+3. Hands-On Examples : 
+  
+   - viewers: Observable<string[]> = of(['welcome','to','New','Era']);
+
+   Example : 
+   // Of Operator => create Observable : 
+  //Using Array : 
+  studentList = ['prasad','sayali','gajanan'];
+  students : Observable<string[]> = of(this.studentList);
+  // Using String : 
+  studentName : Observable<string> = of("Ram");
+  // Using Object :
+  studentObj = {
+    id: 10,
+    name : "Prasad"
+  }
+  ngOnInit(){
+  
+    this.students.subscribe(data => {
+      console.log("Array Of Operator : ",data);
+     });
+  
+     this.studentName.subscribe(data =>{
+       console.log("string Of Operator : ", data);
+     })
+
+     this.student$.subscribe(data =>{
+       console.log("Object Of Operator : ", data);
+     });
+
+     }
+***************************************************************************************************************************
+
+# 2 From Operator : 
+  
+1. From Operator will create an observable from an array, an array-like Object, a Promise, an iterable object, or an 
+   Observable-like object.
+
+2. Remember it will always take Array or Array like.
+
+3. From Operator not take string directly.
+
+4. Hands-On Examples :
+  
+  - students$ : Observable<string[]> = from(['welcome','to','New','Era']);
+
+  Example : 
+  // from Operator : 
+  orderArr = ['Fashion','Electronics','Mobile'];
+  order$ : Observable<string> = from(this.orderArr);
+
+  ngOnInit(){
+
+    this.order$.subscribe(data => {
+      console.log(data);
+    });
+
+  }
+
+***************************************************************************************************************************
+
+# Difference Between From and Of Operator : 
+  
+  1. From operator will create an Observable from an array, an array-like object, a promise , an iterable object , or an Observable-like Object.
+
+  2. Of Operator can create observable from a string, object or array.
+     - specially useful when working with Models or Interfaces.
+
+  3. Hands-On Examples : 
+
+   - student1 : Observable<User> = of(this.UserObj); 
+   - student2 : Observable<string> = of("Prasad");
+   - student3 : Observable<string> = from(["welcome","Prasad"]);
+
+********************************************************************************************************************
+
+# 3 FromEvent Operator : convert Event into Observable : 
+ 
+ 1. Create an Observable that emits events of a specific type coming from the given event target.
+
+ 2. We can bind Target Elements and methods to make sure we get Observable as Output.
+
+ 3. Angular specific => We will use ViewChild , NativeElement as target element and bind events.
+
+ 4. Use Case => I want to have a button , I clicked on It, I should able to get that data converted into Observable.
+
+ 5. Hands-On Examples :
+
+   const student = fromEvent(this.validateBtn?.nativeElement, 'click');
+   console.log(student);
+   student.subscribe(data=>{
+    console.log(data);
+   }) ;
+
+
+    Example : 
+      - html =>
+       <button class="btn btn-primary" #validate (click)="rxJsEventObservable()">
+    Click For Observable
+  </button>
+  <br><br>
+  <a href="http://localhost:4200/test-url" #getlink (mouseover)="getEventObservable()">Test Link</a>
+
+      - ts =>
+  // fromEvent Operator : 
+  @ViewChild('validate')
+  validate!: ElementRef;
+
+  @ViewChild('getlink')
+  getlinkData!: ElementRef;
+
+  rxJsEventObservable(){
+     const btnObservable$ = fromEvent(this.validate?.nativeElement,'click');
+    //  console.log(btnObservable$);
+     btnObservable$.subscribe((data)=>{
+      console.log("fromEvent Operator : ",data);
+     })
+  }
+
+  getEventObservable(){
+    const linkObservable$ = fromEvent(this.getlinkData?.nativeElement,'mouseover');
+    //  console.log(linkObservable$);
+    linkObservable$.subscribe((data)=>{
+      console.log("fromEvent Operator : ",data);
+     })
+  }
+  
+6. Use Case : 
+   for Example => User Should not be allowed to click 3 times immediately if click then button should disabled.
+
+*****************************************************************************************************************
+
+# 4 Interval Operator :
+  
+  1. Creates an Observable that emits sequential numbers every specified interval of time, on a specified SchedulerLike.
+
+  2. Hands-On Examples : 
+    
+    - let numbers$ = interval(500); 
+       numbers$.subscribe(num =>{
+        console.log(num);
+       });
+
+    Example :
+
+    //  interval Operator :
+   shop$ : Observable<string> = from(['mobile','food','cloth']);
+
+    ngOnInit(){
+      this.shop$.subscribe((data)=> {
+      const Num$ = interval(2000);
+      Num$.subscribe((num) => {
+        if(num < 5){
+          // console.log(data + num);
+        }
+      });
+    });
+    }
+
+***********************************************************************************************************************
+
+# 5 debounce Time Operator : Use to make Delay to Observable : 
+
+1. Emits a notification from the source Observable only after a particular time span has passed without another source emission.
+
+2. Hands-On Examples :
+  
+  - let numbers$ = interval(500);
+   
+    numbers$.pipe(
+        debounceTime(100);
+    ).subscribe(data => {
+        console.log(data);
+    });
+
+    Example :
+
+    - html => 
+
+   <h3>Search With RxJS : </h3>
+   <div [formGroup] = "searchForm"> 
+     <input type="text" formControlName="name" (keyup)="readValue()" placeholder="Start Search"/>
+   </div>
+
+     - ts => 
+
+//  debounceTime Operator :
+  searchForm! : FormGroup;
+
+  ngOnInit(){
+
+    this.searchForm = this.fb.group({
+      name : new FormControl('')
+    });
+
+      this.searchForm.get("name")?.valueChanges.pipe(
+        
+      // *** debounceTime Operator : ***
+         debounceTime(3000) // time lag before it emits next value.
+
+         ).subscribe(data => {
+      console.log(data);
+       });
+
+  }
+
+3. Use Cases :
+  
+  1. Search :
+      -> user type the value. -> You Can Not call API's So many times.
+      -> time lag -> debounceTime.
+      -> fast -> api calls
+
+  2. Delay/ Emit the next 
+
+***********************************************************************************************************************
+
+# 6 Take Operator :
+  
+  1. Emits only the first count values emitted by the source Observable.
+
+  2. Hands-On Examples : 
+    
+      this.searchForm.get("name")?.valueChanges.pipe(
+        
+            category$.pipe(
+                take(2),
+                debounceTime(100)
+            ).subscribe(data => console.log(data));
+
+         ).subscribe(data => {
+      console.log(data);
+       });
+
+      
+
+************************************************************************************************************************
+
+# 7  takeWhile Operator : 
+  
+  1. Emits values emitted by the source Observable so long as each value satisfies the given predicate, and then 
+     completes as soon as this predicate is not satisfied.
+
+  2. Hands-On Examples :
+    
+       this.searchForm.get("name")?.valueChanges.pipe(
+        
+            category$.pipe(
+                takeWhile((v) => this.checkCount(v)),
+                debounceTime(3000)
+            ).subscribe(data => console.log(data));
+
+         ).subscribe(data => {
+      console.log(data);
+       });  
+    
+    checkCount(value: string | any[]){
+       return value.length > 5 ? false : true;
+    }
+
+************************************************************************************************************************
+
+# 8  takeLast Operator : 
+  
+  1. Waits for the source to complete, then emits the last N values from the source, as specified by the count argument.
+
+  2. Hands-On Examples :
+    //  takeLast Operator :
+   categories = ['Mobile','TV','Chargers','Headphones'];
+   category$ : Observable<string>= from(this.categories);
+
+ngOnInit(){
+
+     this.searchForm.get("name")?.valueChanges.pipe(
+        
+                category$.pipe(
+                    takeLast(2),
+                    debounceTime(100)
+                ).subscribe(data => console.log(data));
+
+         ).subscribe(data => {
+      console.log(data);
+       });
+
+    
+}
+
+  3. Use Case :
+    - Whenever you are sure about the data set, you need specific last emitted values. => use takeLast(n)
+    
+***************************************************************************************************************************
+
+# 9  first Operator : 
+  
+  1. First Operator will give the first value emitted by the source Observable.
+
+  2. Hands-On Examples :
+    
+     this.searchForm.get("name")?.valueChanges.pipe(
+        
+            category$.pipe(
+            first()
+            ).subscribe(data => console.log(data));
+
+         ).subscribe(data => {
+      console.log(data);
+       });  
+    
+
+     
+  3. Use Case :
+    
+
+***************************************************************************************************************************
+
+# 10 last Operator : 
+  
+  1. last Operator will give the last value emitted by the source Observable.
+
+  2. Hands-On Examples :
+    
+     this.searchForm.get("name")?.valueChanges.pipe(
+        
+            category$.pipe(
+            last()
+            ).subscribe(data => console.log(data));
+
+         ).subscribe(data => {
+      console.log(data);
+       });  
+    
+  3. Use Case :
+    
+
+***************************************************************************************************************************
+
+# 11 elementAt Operator : 
+  
+  1. elementAt operator will give a single value from the source Observable based upon the index given 
+
+  2. Remember its an Array index - means it will always start with 0 
+
+  3. Hands-On Examples :
+    
+      this.searchForm.get("name")?.valueChanges.pipe(
+        
+           category$.pipe(
+           elementAt(2)
+           ).subscribe(data => console.log(data));
+
+         ).subscribe(data => {
+      console.log(data);
+       });  
+     
+
+  4. Use Case :
+    
+
+***************************************************************************************************************************
+# 12 filter Operator : 
+  
+  1. filter operator will give the values from the source Observable based on the predicate function given 
+
+  2. very important operator and you will find yourself using this very often.
+
+  3. Hands-On Examples :
+    
+    - filter((v) => this.filterText(v))
+
+    Example :
+
+       this.searchForm.get("name")?.valueChanges.pipe(
+        
+           // *** filter Operator ***
+           filter((v) => this.CharCount(v));
+
+         ).subscribe(data => {
+      console.log(data);
+       });  
+
+        CharCount(v: string | any[]){
+            return v.length < 10 ? true : false;
+        }
+
+  4. Use Case :
+    - 1. HTTP call => If user is not from a city
+    - 2. If tax bracket is less than 30%
+
+***************************************************************************************************************************
+# 13 Distinct Operator : 
+  
+  1. Distinct Operator will give all the values from the source observable that are distinct when compared with the previous
+     value.
+
+  2. Hands-On Examples :
+     
+  // distinct Operator :
+  categories = ['Mobile','TV','Chargers','Headphones','Mobile','TV',];
+  category$ : Observable<string>= from(this.categories);
+
+  ngOnInit(){
+
+     this.searchForm.get("name")?.valueChanges.pipe(
+        
+           // *** distinct Operator ***
+          category$.pipe(
+          distinct()
+          ).subscribe(data => console.log(data));
+
+         ).subscribe(data => {
+      console.log(data);
+       });   
+  }
+  
+
+
+  3. Use Case :
+
+***************************************************************************************************************************
+# 14 skip Operator : 
+  
+  1. Skip Operator will give back an observable that will skip the first occurrence of count items taken as input.
+
+  2. Hands-On Examples :
+     
+  // skip Operator :
+  categories = ['Mobile','TV','Chargers','Headphones','Mobile','TV',];
+  category$ : Observable<string>= from(this.categories);
+
+  ngOnInit(){
+
+     this.searchForm.get("name")?.valueChanges.pipe(
+        
+          category$.pipe(
+         // **** skip Operator ****
+
+           skip(2)  // skip first 2 values
+
+           // **** count Operator ****
+            count()  // count  values
+
+          ).subscribe(data => console.log(data));
+
+         ).subscribe(data => {
+      console.log(data);
+       });   
+  }
+  
+  3. Use Case :
+
+***************************************************************************************************************************
+# 15 count Operator : 
+  
+  1. count operator will give back an observable that will skip the first occurrence of count items taken as input.
+
+  2. Hands-On Examples :
+     
+// count Operator :
+  categories = ['Mobile','TV','Chargers','Headphones','Mobile','TV',];
+  category$ : Observable<string>= from(this.categories);
+
+  ngOnInit(){
+
+     this.searchForm.get("name")?.valueChanges.pipe(
+        
+          category$.pipe(
+
+           // **** count Operator ****
+            count()  // count  values
+
+          ).subscribe(data => console.log(data));
+
+         ).subscribe(data => {
+      console.log(data);
+       });   
+  }
+  
+
+  3. Use Case :
+
+***************************************************************************************************************************
+# 16 max Operator : 
+  
+  1. max operator will take in an observable will all values and return an observable with the max value.
+
+  2. Hands-On Examples :
+    
+  - ranks = [10,12,5,6,3,87,67,34];
+    rank$ : Observable<number> = from(this.ranks);
+    
+      this.searchForm.get("name")?.valueChanges.pipe(
+        
+           rank$.pipe(
+           max()
+           ).subscribe(data => console.log(data));
+
+
+         ).subscribe(data => {
+      console.log(data);
+       });   
+  }
+   
+
+  3. Use Case :
+
+***************************************************************************************************************************
+# 17 min Operator : 
+  
+  1. min operator will take in an observable will all values and return an observable with the minimum value.
+
+  2. Hands-On Examples :
+    
+  - ranks = [10,12,5,6,3,87,67,34];
+    rank$ : Observable<number> = from(this.ranks);
+
+     this.searchForm.get("name")?.valueChanges.pipe(
+        
+           rank$.pipe(
+           min()
+           ).subscribe(data => console.log(data));
+
+
+         ).subscribe(data => {
+      console.log(data);
+       });   
+  }
+
+  3. Use Case :
+
+***************************************************************************************************************************
+
+Combined Example : 
+
+ // example  : 
+  example = [12,5,4,33,87,10,12,5,6,3,87,67,34];
+  example$ : Observable<number> = from(this.example);
+
+ngOnInit(){
+
+     this.searchForm.get("name")?.valueChanges.pipe(
+        
+          //  *** Example ***
+      this.example$.pipe(
+
+        distinct(),
+
+        filter((v) => this.filterValue(v)),
+
+        max()
+
+      ).subscribe(data => {
+        console.log("Max Value : ",data);
+      });
+
+         ).subscribe(data => {
+      console.log(data);
+       });   
+  }
+
+}
+
+// ******* Example *********
+  filterValue(v: number){
+    return v > 10 ? true : false;
+  }

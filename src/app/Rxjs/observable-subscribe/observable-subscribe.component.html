@@ -1,1 +1,18 @@
-<p>observable-subscribe works!</p>
+<div class="container mt-5 text-center">
+    <div *ngIf="agentName">
+        <h3>Observable : </h3>
+         <b> {{agentName}} </b>
+    </div>
+<br>
+  <button class="btn btn-primary" #validate (click)="rxJsEventObservable()">
+    Click For Observable
+  </button>
+  <br><br>
+  <a href="http://localhost:4200/test-url" #getlink (mouseover)="getEventObservable()">Test Link</a>
+
+  <br><br>
+  <h3>Search With RxJS : </h3>
+  <div [formGroup] = "searchForm"> 
+     <input type="text" formControlName="name" (keyup)="readValue()" placeholder="Start Search"/>
+  </div>
+</div>
