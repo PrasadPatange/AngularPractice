@@ -19,10 +19,10 @@ Automatically create Path in routing file.
 
 
 like JS : <div id="text">This is JS </div>   // html
-          const text = doument.getElementById('text');  // ts 
+          const text = doument.getElementById('text');  // js 
 
 In Angular : <div #text>This is Angular </div>    // html
-             @ViewChild('text') txt : ElementRef;
+             @ViewChild('text') txt : ElementRef;    //ts
 
              ngAfterViewInit(){
                console.log(this.txt);
@@ -166,8 +166,19 @@ In Angular : <div #text>This is Angular </div>    // html
   4) Lots of validations / custom validations.
 
 => Choose TDF When :
-  1) Handing simple/basic forms.
+  1) Handling simple/basic forms.
   2) less validations rules.
 
 
-  
+12) Diffference between ViewChild and ContentChild :
+   
+   1) @ViewChild() :
+     => If we want to access DOM elements (html) into its component class (ts) use ViewChild and ViewChildren.
+
+   2) @ContentChild() :
+     => Any element or component projected inside this component with the help of content projection 
+        so we want to access those elements or compoent then we have to use ContentChild and ContentChildren.
+
+   Ex: 
+     <h2 #header>This is ViewChild</h2>          // use ViewChild
+     <ng-content></ng-content>                  // use ContentChild
