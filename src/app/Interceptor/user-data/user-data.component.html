@@ -1,0 +1,22 @@
+<div class="container text-center">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address | Street</th>
+          </tr>
+        </thead>
+        <tbody>
+           
+                <tr *ngFor="let item of userArr">
+                    <td scope="row">{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.address.street}}</td>
+                  </tr>
+            
+        </tbody>
+      </table>
+</div>

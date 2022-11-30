@@ -1,0 +1,15 @@
+<div class="container text-center" [ngClass]="parent">
+    <h1>Parent Component</h1>
+    <br><br>
+    <h2>Child Data  : {{childData}}</h2>
+    <br>
+    <app-child1 
+    [uname]="userName"
+    (child)="parentMethod($event)"
+    ></app-child1>
+</div>
+
+<div>
+    <h1>Feature Module : </h1>
+  <app-product></app-product>
+</div>

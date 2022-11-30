@@ -21,6 +21,29 @@ import { HighlightsDirective } from './directives/highlights.directive';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderInterceptor } from './Interceptor/header.interceptor';
 import { CommonModule } from '@angular/common';
+import { AgePipe } from './pipes/age.pipe';
+import { PipeComponent } from './pipe/pipe.component';
+import { Parent1Component } from './comm/parent1/parent1.component';
+import { Child1Component } from './comm/child1/child1.component';
+import { ProductDashboardModule } from './Feature_Module/product-dashboard/product-dashboard.module';
+import { ViewchildParentComponent } from './ViewChild/viewchild-parent/viewchild-parent.component';
+import { ViewchildChildComponent } from './ViewChild/viewchild-child/viewchild-child.component';
+import { ProductsComponent } from './content-projection/products/products.component';
+import { ProductWidgetsComponent } from './content-projection/product-widgets/product-widgets.component';
+import { ContentProductComponent } from './content-child/content-product/content-product.component';
+import { ProductListComponent } from './content-child/product-list/product-list.component';
+import { PromiseVsObservableComponent } from './promise-vs-observable/promise-vs-observable.component';
+import { ObsVsSubComponent } from './RXJS_Subject/obs-vs-sub/obs-vs-sub.component';
+import { RxjsSubjectComponent } from './RXJS_Subject/rxjs-subject/rxjs-subject.component';
+import { SubVsBsubComponent } from './RXJS_Subject/sub-vs-bsub/sub-vs-bsub.component';
+import { ReplaysubjectComponent } from './RXJS_Subject/replaysubject/replaysubject.component';
+import { AsyncSubjectComponent } from './RXJS_Subject/async-subject/async-subject.component';
+import { Subcomp1Component } from './RXJS_Subject/subcomp1/subcomp1.component';
+import { Subcomp2Component } from './RXJS_Subject/subcomp2/subcomp2.component';
+import { UserDataComponent } from './Interceptor/user-data/user-data.component';
+import { SetHeaderInterceptor } from './Interceptor/set-header.interceptor';
+import { LoggingInterceptor } from './Interceptor/logging.interceptor';
+import { TDFormComponent } from './tdform/tdform.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +61,27 @@ import { CommonModule } from '@angular/common';
     SubComponent,
     ObservableSubscribeComponent,
     ViewChildComponent,
-    HighlightsDirective
+    HighlightsDirective,
+    AgePipe,
+    PipeComponent,
+    Parent1Component,
+    Child1Component,
+    ViewchildParentComponent,
+    ViewchildChildComponent,
+    ProductsComponent,
+    ProductWidgetsComponent,
+    ContentProductComponent,
+    ProductListComponent,
+    PromiseVsObservableComponent,
+    ObsVsSubComponent,
+    RxjsSubjectComponent,
+    SubVsBsubComponent,
+    ReplaysubjectComponent,
+    AsyncSubjectComponent,
+    Subcomp1Component,
+    Subcomp2Component,
+    UserDataComponent,
+    TDFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,10 +89,13 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    ProductDashboardModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SetHeaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

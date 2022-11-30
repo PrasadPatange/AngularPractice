@@ -1,0 +1,18 @@
+<div class="container text-center">
+    <h1 class="text-primary">viewChild And ViewChildren</h1>
+    <p #highlight>This is viewChild Message</p>
+    <b #highlight>This is viewChild Message</b>  
+    <!-- not apply because viewchild only points first Matching Element-->
+
+    <!-- to point multiple elements use viewChildren -->
+    <p #highlight1>This is viewChildren Message</p>
+    <b #highlight1>This is viewChildren Message</b>  
+    <br>
+    <br>
+    
+    <h2>From Parent Counter  : {{child.counter}}</h2>
+    <button class="btn btn-dark" (click)="incr()">Increament</button> &nbsp;
+    <button class="btn btn-dark" (click)="decr()">Decrement</button>
+
+    <app-viewchild-child #child></app-viewchild-child>
+</div>

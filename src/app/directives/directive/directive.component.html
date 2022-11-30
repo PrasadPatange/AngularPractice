@@ -1,5 +1,6 @@
 <div class="container mt-5">
   <div class="row">
+    <!-- Component Directive  -->
     <div class="col">
       <h3>Component Directive</h3>
       <h5>@Component</h5>
@@ -11,6 +12,7 @@
       </h4>
     </div>
 
+    <!-- Attribute Directive -->
     <div class="col">
       <h3>Attribute Directive</h3>
       <h4>
@@ -24,6 +26,8 @@
       <h3 [ngClass]="attr">[ngClass]</h3>
     </div>
   </div>
+
+  <!-- Structure Directive  -->
   <div class="row">
     <div class="text-center">
       <h3>Structure Directive</h3>
@@ -34,6 +38,7 @@
       </h4>
     </div>
 
+    <!-- *ngIf -->
     <div class="col center">
       <h1>*ngIf</h1>
       <br />
@@ -44,7 +49,19 @@
       <div *ngIf="showBox" class="box center">
         <h3 class="mt-5">Show Box</h3>
       </div>
+      <br><br>
+      <!-- 2nd Example -->
+      <div *ngIf="isLogin ; else logOut">
+        <h3>Welcome to Dashboard</h3>
+      </div>
+      <!-- ng-template use with directives  -->
+      <ng-template #logOut>
+        <h3>You are Not Login</h3>
+      </ng-template>
+      
     </div>
+    
+    <!-- *ngFor -->
     <div class="col">
       <h1>*ngFor</h1>
       <br />
@@ -56,9 +73,12 @@
         </ul>
       </div>
     </div>
+
+    <!-- *ngSwitch  -->
     <div class="col">
       <h1>*ngSwitch</h1>
       <br />
+      <!-- Ex: 1 -->
       <h2>Hey! Good Morning</h2>
       <br />
       <div [ngSwitch]="day">
@@ -84,6 +104,7 @@
         <div *ngSwitchDefault><h3>Uh oh! Somethings wrong</h3></div>
       </div>
       <br />
+      <!-- Ex : 2 -->
      <b> Input string :</b> <input type="text" [(ngModel)]="num" />
 
       <div [ngSwitch]="num">
@@ -93,6 +114,28 @@
         <div *ngSwitchCase="'4'">Four</div>
         <div *ngSwitchCase="'5'">Five</div>
         <div *ngSwitchDefault>This is Default</div>
+      </div>
+      <br><br>
+      <!-- Ex : 3 -->
+      Select Country : <select (change)="choice($event.target)">
+        <option>Select Country</option>
+        <option *ngFor="let c of countries" [value]="c.code">{{c.country}}</option>
+      </select>
+      <!-- {{selectedCountry}} -->
+      <br><br>
+      <div [ngSwitch]="selectedCountry">
+         <div *ngSwitchCase="'ind'" class="alert alert-primary">
+            <p>India Calling Code is +91 </p>
+         </div>
+         <div *ngSwitchCase="'uae'" class="alert alert-primary">
+             <p>United Arab Emirates Calling Code is +380 </p>
+         </div>
+         <div *ngSwitchCase="'uk'" class="alert alert-primary">
+             <p>United Kingdom Calling Code is +44 </p>
+         </div>
+         <div *ngSwitchDefault class="alert alert-primary">
+             <p>Select Your Country.</p>
+         </div>
       </div>
     </div>
   </div>

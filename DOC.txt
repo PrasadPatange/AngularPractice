@@ -11,3 +11,163 @@ Automatically create Path in routing file.
 
 4) Create Interceptor =>
      cmd => ng generate interceptor <interceptor_name>
+
+5) ViewChild and ViewChildren :
+    => Use for DOM Manipulation.
+    => If you want to get refference from your element in template file (HTML) into the component Class (TS)
+       so in this case ViewChild and ViewChildren can be used.
+
+
+like JS : <div id="text">This is JS </div>   // html
+          const text = doument.getElementById('text');  // ts 
+
+In Angular : <div #text>This is Angular </div>    // html
+             @ViewChild('text') txt : ElementRef;
+
+             ngAfterViewInit(){
+               console.log(this.txt);
+             }
+
+@ViewChild() => only Points to first matching element.
+@ViewChildren() => points to the multiple elements.
+
+ => Also Use for component Communication :
+   => If you want to access any Information from the child component into the parent component there Also
+      we used ViewChild and ViewChildren.
+
+
+
+6) Content Projection with ng-content :
+ => If You want to pass html to child component from parent component.
+ => where you can pass html from parent to child component and you can decide to make your component more reusable.
+
+ => To project some unique html from the template of the parent component, you need to add content between the 
+    opening and closing tags of the nested child component.
+ 
+     parent.html :
+
+    <child>
+    <h2>Top Product</h2>
+    </child>
+
+ => And in order to actually display the content inside of the nested component add the ng-content tag to 
+    a certain place in the template where you want to render the projected code .
+
+    child.html :
+
+    <div>
+    <ng-content></ng-content>
+    <p> Some Random Data</p>
+    </div>
+
+
+7) Promise vs Observable : 
+  => Both are used to handle async operations in angular.
+
+  Promise                                                      Observable
+1) Promise always asynchronous.                            1) Observable can be either async or synchronous.
+
+2) Not Lazy(Eager) : Promises execute                      2) Observables are Lazy.
+   immediately after creation.                                don't execute until we don't subscribe it
+                                                              using subscribe() method.
+
+3) Promises emit Single Value.                             3) Emits multiple value over a period of time.
+
+4) Promise don't Provide operators.                        4) Observables provides rxjs operators like map,filter,
+                                                              reduce, retry,etc.that is useful for complex transfromation.
+                                                            
+5) Promise are not cancellable.                            5) Observables can be cancel using unsubscribe() method.
+
+6) const obj = new Promise(d => {});                       6) const obj = new Observable(sub => {}); 
+   obj.then(res => {});                                       obj.subscribe(res => {});
+
+
+
+8) Rxjs Subject :
+ => A subject is an Observable that can multicast. i.e. talk to many observers.
+ => Subject in Angular use to Communicate with one or more components.
+
+9) Types of subjects :
+  1) BehaviorSubject :
+    => A BehaviorSubject holds one value(Initial or last emitted value).
+    => When it is subscribed it emits the value immediately.
+
+  2) ReplaySubject :
+    => It Emits or buffer old values and emit those values to new subscribers.
+
+
+  3) AsyncSubject :
+    => Async Subject only emits a value when it completes.
+    => it will emit its latest/last value to all its observers on completion.
+
+
+9) Observable vs Subject :
+ 
+ Observable                                        Subject
+
+ 1) Observable are unicasts.                      1) Subject are Multicast.
+
+ 2) Unicasting means that each subscribed         2) Multicasting basically means that one Observable execution
+   observer own an independent execution of          is shared among multiple subscribers. 
+   the Observable.                                   Subjects are like EventEmiiters, they maintain registry of many
+                                                     listeners.
+                                                
+
+10) Http Interceptors :
+  => Interceptors are a unique type of angular service that we can implement to intercept 
+     Incoming or Outgoing HTTP request / response using HttpClient.
+   
+  => operations using Interceptors :
+     1) Modify Http Headers.
+     2) Modifying the request body.
+     3) Set Authenticaion / Authorization Token.
+     4) Mock the backend Api.
+     5) Modify the response.
+     6) Error Handling.
+   
+11) Angular Forms  :
+   1) Template Driven Forms => TDF
+   2) Reactive Forms   => Model Driven Form
+ 
+ =>  Diffference :
+
+   Template Driven Form                                          Reactive Form
+1) Created by directives                              1) Created in Component Class.
+2) low Scalibility                                    2) High Scalibility 
+3) asynchronous data flow                             3) synchronous data flow.
+4) FormsModule                                        4) ReactiveFormsModule
+5) 2-way data binding                                 5) no 2-way data binding
+6) mutable data flow                                  6) Immutable data flow
+7) Unit testing is a challenge                        7) Testable
+
+=> Common Foundation :
+  1) FormControl: 
+    => this is a class that enable validations
+    => Each instance of this class help to check the values of the field whether it is touched , untouched 
+       dirty , pristine ,etc.
+
+  2) FormGroup:
+     => This class represents a group of controls.
+     => FormGroup can have multiple FormControls.
+     => FormGroup returns true if all controls are validate.
+
+  3) FormArray:
+     => Similar to FormGroup class FormArray represents a group of controls.
+     => FormArray is used to create dynamic controls.
+
+  4) ControlValueAccessor:
+     => creates a bridge between Angular FormControl instances and native DOM elements.
+   
+
+=> Choose Reactive Forms When :
+  1) Handling Complex Forms.
+  2) Following Reactive Approach.
+  3) Dynamic controls.
+  4) Lots of validations / custom validations.
+
+=> Choose TDF When :
+  1) Handing simple/basic forms.
+  2) less validations rules.
+
+
+  

@@ -10,7 +10,8 @@ import { SubjectService } from '../service/subject.service';
 export class LazyLoadingComponent implements OnInit {
 
   userArr:any;
-  constructor(private apiService:ApiService,public loaderService:SubjectService) { }
+  constructor(private apiService:ApiService,public loaderService:SubjectService) {
+   }
 
   ngOnInit(): void {
     setTimeout(() => {

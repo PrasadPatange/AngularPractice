@@ -21,6 +21,10 @@ export class HeaderInterceptor implements HttpInterceptor {
   //     }
   //   });
   //   return next.handle(request);
+
+
+
+  
   this.loaderService.isLoading.next(true);
   return next.handle(request).pipe(
     finalize(

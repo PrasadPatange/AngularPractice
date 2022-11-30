@@ -1,0 +1,22 @@
+<div class="container mt-5 text-center">
+    <div class="row">
+        <div class="col-md-6">
+            <app-product-widgets [products]="saleProducts">
+                
+                <!--html content pass to child -->
+                <h3 class="header">Sales Products</h3>
+                <a href="" class="link">See Products...</a>
+
+            </app-product-widgets>
+        </div>
+        <div class="col-md-6">
+            <app-product-widgets [products]="TopProducts">
+                
+                <!--html content pass to child -->
+                <h3 class="header">Top Products</h3>
+                <a href="" class="link">See More...</a>
+
+            </app-product-widgets>
+        </div>
+    </div>
+</div>

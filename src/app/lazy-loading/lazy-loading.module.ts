@@ -14,4 +14,8 @@ import { LazyLoadingComponent } from './lazy-loading.component';
     LazyLoadingRoutingModule
   ]
 })
-export class LazyLoadingModule { }
+export class LazyLoadingModule {
+  constructor(){
+    console.log("Lazy Loading");
+  }
+ }

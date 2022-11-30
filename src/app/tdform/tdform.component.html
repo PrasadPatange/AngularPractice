@@ -1,0 +1,54 @@
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-6">
+            <form #userForm="ngForm"  (ngSubmit)="onSubmit(userForm)">
+                <div class="mb-3">
+                  <label for="fname" class="form-label">First Name</label>
+                  <input type="text" class="form-control" name="fname" id="fname" ngModel/>
+                </div>
+                <div class="mb-3">
+                  <label for="lname" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" name="lname" id="lname" ngModel/>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" name="email" id="email" ngModel/>
+                </div>
+                <div class="mb-3">
+                  <label for="country" class="form-label">Country : </label>
+                  <select class="form-select form-select-sm mb-3" name="country" id="country" ngModel>
+                    <option *ngFor="let country of countryList" [value]="country">{{country}}</option>
+                  </select>
+                </div>
+
+                <div class="mb-3">
+                  <label for="country" class="form-label">Address : </label>
+                 <div class="px-5" ngModelGroup="address">
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" name="city" id="email" ngModel/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="street" class="form-label">Street</label>
+                        <input type="text" class="form-control" name="street" id="street" ngModel/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="code" class="form-label">PinCode</label>
+                        <input type="text" class="form-control" name="pincode" id="code" ngModel/>
+                    </div>
+                 </div>
+                </div>
+               
+                <button type="submit" class="btn btn-primary">Submit</button> &nbsp;
+                <button type="button" class="btn btn-secondary" (click)="resetForm(userForm)">resetForm</button>
+              </form>
+              <hr>
+              <p>{{userForm.value | json}}</p>
+              <p>Valid : {{userForm.valid}}</p>
+              <p>Touched : {{userForm.touched}}</p>
+              <p>Submitted : {{userForm.submitted}}</p>
+        </div>
+    </div>
+</div>

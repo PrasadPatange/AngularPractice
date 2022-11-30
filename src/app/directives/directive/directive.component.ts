@@ -16,6 +16,16 @@ export class DirectiveComponent implements OnInit {
 
   public num: number = 0;
 
+  public isLogin :boolean = true;
+
+  countries : any[] = [
+    {code:'ind',country:'India'},
+    {code:'uae',country:'United Arab Emirates'},
+    {code:'uk',country:'United Kingdom'}
+  ];
+
+  selectedCountry!: string;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -27,5 +37,9 @@ export class DirectiveComponent implements OnInit {
   }
   toggle(){
      this.showBox = !this.showBox;
+  }
+
+  choice(code:any){
+     this.selectedCountry = code.value;
   }
 }

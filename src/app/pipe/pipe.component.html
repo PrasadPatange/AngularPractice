@@ -1,0 +1,29 @@
+<h1 class="text-center">{{ title | titlecase }}</h1>
+<table class="table">
+  <thead>
+    <tr class="table-dark">
+      <th scope="col">Index</th>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+      <th scope="col">Salary</th>
+      <th scope="col">DOB</th>
+      <th scope="col">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ user.id }}</td>
+      <td>{{ user.name | lowercase }}</td>
+      <td>{{ user.city | uppercase }}</td>
+      <td>{{ user.salary | currency: "INR":"symbol":"3.3-3" }}</td>
+      <td>{{ user.dob | date: "dd/MM/yyyy" }}</td>
+      <td>{{ user.dob | age}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre>
+    {{ users | json }}
+</pre>

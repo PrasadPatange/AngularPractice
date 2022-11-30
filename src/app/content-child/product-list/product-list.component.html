@@ -1,0 +1,16 @@
+<div class="container">
+
+    <!-- project html content that comes from parent -->
+    <ng-content select=".header"></ng-content>
+    
+    <ul class="list-group" *ngFor="let p of products">
+      <li  class="list-group-item d-flex justify-content-between align-items-center">
+        {{p.name}}
+        <span class="badge bg-primary rounded-pill">{{p.price}}</span>
+      </li>
+    </ul>
+  
+    <!-- project html content that comes from parent -->
+      <ng-content select=".link"></ng-content>
+  
+  </div>
