@@ -26,7 +26,7 @@ export class AsyncSubjectComponent implements OnInit {
     
     aSubject.next("value 4");
     aSubject.next("value 5");
-    aSubject.complete();
+    // aSubject.complete();
     
     aSubject.subscribe(d => console.log(`User 2 :  ${d}`));
     

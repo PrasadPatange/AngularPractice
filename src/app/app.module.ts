@@ -44,6 +44,8 @@ import { UserDataComponent } from './Interceptor/user-data/user-data.component';
 import { SetHeaderInterceptor } from './Interceptor/set-header.interceptor';
 import { LoggingInterceptor } from './Interceptor/logging.interceptor';
 import { TDFormComponent } from './tdform/tdform.component';
+import { HookParentComponent } from './Hooks/hook-parent/hook-parent.component';
+import { HookChildComponent } from './Hooks/hook-child/hook-child.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { TDFormComponent } from './tdform/tdform.component';
     Subcomp2Component,
     UserDataComponent,
     TDFormComponent,
+    HookParentComponent,
+    HookChildComponent,
   ],
   imports: [
     BrowserModule,

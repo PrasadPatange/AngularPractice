@@ -17,6 +17,6 @@ import { ProductComponent } from './product/product.component';
 })
 export class ProductDashboardModule { 
   constructor(){
-    console.log("Feature Module");
+    // console.log("Feature Module");
   }
 }

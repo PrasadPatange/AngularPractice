@@ -34,7 +34,7 @@ export class ViewchildParentComponent implements OnInit,AfterViewInit {
     this.text1.last.nativeElement.style.color = 'yellow';
     
     // Child Component
-    console.log(this.child)
+    console.log(this.child);
   }
 
   incr(){

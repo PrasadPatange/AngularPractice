@@ -37,7 +37,7 @@ In Angular : <div #text>This is Angular </div>    // html
 
 
 
-6) Content Projection with ng-content :
+6) Content Projection with <ng-content> :
  => If You want to pass html to child component from parent component.
  => where you can pass html from parent to child component and you can decide to make your component more reusable.
 
@@ -65,13 +65,13 @@ In Angular : <div #text>This is Angular </div>    // html
   => Both are used to handle async operations in angular.
 
   Promise                                                      Observable
-1) Promise always asynchronous.                            1) Observable can be either async or synchronous.
+1) Promise  always handle asynchronous data.               1) Observable can be handle either async or synchronous data.
 
 2) Not Lazy(Eager) : Promises execute                      2) Observables are Lazy.
    immediately after creation.                                don't execute until we don't subscribe it
                                                               using subscribe() method.
 
-3) Promises emit Single Value.                             3) Emits multiple value over a period of time.
+3) Promises emit Single Value.                             3) Observables Emits multiple value over a period of time.
 
 4) Promise don't Provide operators.                        4) Observables provides rxjs operators like map,filter,
                                                               reduce, retry,etc.that is useful for complex transfromation.

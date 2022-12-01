@@ -19,6 +19,7 @@ import { RxjsSubjectComponent } from './RXJS_Subject/rxjs-subject/rxjs-subject.c
 import { Subcomp1Component } from './RXJS_Subject/subcomp1/subcomp1.component';
 import { UserDataComponent } from './Interceptor/user-data/user-data.component';
 import { TDFormComponent } from './tdform/tdform.component';
+import { HookParentComponent } from './Hooks/hook-parent/hook-parent.component';
 
 const routes: Routes = [
 {
@@ -96,6 +97,10 @@ const routes: Routes = [
 {
   path:'form',
   component:TDFormComponent
+},
+{
+  path:'hook',
+  component:HookParentComponent
 },
 { path: 'lazyLoading', loadChildren: () => import('./lazy-loading/lazy-loading.module').then(m => m.LazyLoadingModule) },
 

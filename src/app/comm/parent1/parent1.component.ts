@@ -12,6 +12,7 @@ export class Parent1Component implements OnInit {
   }
 
   userName : string = "Data from Parent";
+  
   childData:any;
   constructor() { }
 

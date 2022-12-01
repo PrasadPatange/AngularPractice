@@ -15,7 +15,7 @@ export class SetHeaderInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     
     // For Intercept Request => 
-    console.log("Interceptor => ",request);
+    // console.log("Interceptor => ",request);
 
     const API_KEY = "Test123";
     const req = request.clone({

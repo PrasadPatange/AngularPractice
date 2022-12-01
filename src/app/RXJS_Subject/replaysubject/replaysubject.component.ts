@@ -16,7 +16,7 @@ export class ReplaysubjectComponent implements OnInit {
     // ReplaySubject => 
     // It Emits or buffer old values and emit those values to new subscribers.
 
-    const rSubject = new ReplaySubject<string>(2);
+    const rSubject = new ReplaySubject<string>(2); //buffer last 2 values
     rSubject.next("first");
     rSubject.next("second");
     rSubject.next("third");

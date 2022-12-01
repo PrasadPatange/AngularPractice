@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Parent Compoent</h1>
+            <input type="text" (blur)="parentData($event)">
+            <br>
+            <h3>Simple Form</h3>
+            <p>Product Name : <input type="text" [(ngModel)]="name" /></p>
+            <p>Product Price : <input type="text" [(ngModel)]="price" /></p>
+            <button (click)="updateProduct()">Update Product</button>
+        </div>
+        <div class="col-md-6">
+            <h1>Child Component</h1>
+            <!-- <app-hook-child 
+            [child] = "parent"
+            [childProduct] = product
+            >
+            <h1 #child>This is Child Content From Parent</h1>
+            </app-hook-child> -->
+            <app-hook-child 
+            [child] = "parent"
+            >
+            <h1 #child>This is Child Content From Parent</h1>
+            </app-hook-child>
+        </div>
+    </div>
+</div>

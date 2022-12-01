@@ -23,7 +23,7 @@ export class LoggingInterceptor implements HttpInterceptor {
           
           const endTime = (new Date()).getTime();
           const difference = endTime - startTime;
-          console.log(event.url + ' Succeed In '+ difference + " Milliseconds");
+          // console.log(event.url + ' Succeed In '+ difference + " Milliseconds");
 
         }
           return event;
