@@ -46,6 +46,7 @@ import { LoggingInterceptor } from './Interceptor/logging.interceptor';
 import { TDFormComponent } from './tdform/tdform.component';
 import { HookParentComponent } from './Hooks/hook-parent/hook-parent.component';
 import { HookChildComponent } from './Hooks/hook-child/hook-child.component';
+import { DynamicFormComponent } from './forms/dynamic-form/dynamic-form.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { HookChildComponent } from './Hooks/hook-child/hook-child.component';
     TDFormComponent,
     HookParentComponent,
     HookChildComponent,
+    DynamicFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,29 @@
+    <div class="container">
+        <form [formGroup]="userForm">
+          <div class="mb-3" *ngFor="let data of formData">
+            <label for="exampleInputEmail1" class="form-label">{{
+              data.label
+            }}</label>
+            <input
+              type="{{ data.type }}"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              formControlName="{{ data.label }}"
+              placeholder="Enter {{ data.label }}"
+            />
+            <div class="text-danger" *ngIf="userForm.controls[data.label].touched">
+              <span *ngIf="userForm.controls[data.label].hasError('required')">
+                {{ data.label }} is required*
+              </span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="submit()">
+            Submit
+          </button>
+        </form>
+      </div>
+
+      <pre>
+        {{userForm.value | json }}
+      </pre>

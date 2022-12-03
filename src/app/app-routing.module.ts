@@ -20,6 +20,7 @@ import { Subcomp1Component } from './RXJS_Subject/subcomp1/subcomp1.component';
 import { UserDataComponent } from './Interceptor/user-data/user-data.component';
 import { TDFormComponent } from './tdform/tdform.component';
 import { HookParentComponent } from './Hooks/hook-parent/hook-parent.component';
+import { DynamicFormComponent } from './forms/dynamic-form/dynamic-form.component';
 
 const routes: Routes = [
 {
@@ -101,6 +102,10 @@ const routes: Routes = [
 {
   path:'hook',
   component:HookParentComponent
+},
+{
+  path:'dynamic',
+  component:DynamicFormComponent
 },
 { path: 'lazyLoading', loadChildren: () => import('./lazy-loading/lazy-loading.module').then(m => m.LazyLoadingModule) },
 
