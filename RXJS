@@ -1,0 +1,350 @@
+Rxjs :
+1) Pipe Operator :
+   You can use pipes to link operators together. Pipes let you combine multiple functions into a single function.
+ The pipe() function takes as its arguments the functions you want to combine, and returns a new function that,
+ when executed, runs the composed functions in sequence.
+
+example :
+
+import { of } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+
+const squareOdd = of(1, 2, 3, 4, 5)
+  .pipe(
+    filter(n => n % 2 !== 0),
+    map(n => n * n)
+  );
+
+// Subscribe to get values
+squareOdd.subscribe(x => console.log(x));
+
+1) fromEvent | debounceTime : Use to make Delay to Observable| distinctUntilChanged :
+
+ @ViewChild('txt') text: ElementRef;
+  data: any;
+  constructor() {}
+
+  ngOnInit() {
+   
+  }
+
+  ngAfterViewInit() {
+    const inputText = fromEvent<any>(this.text.nativeElement, 'keyup')
+      .pipe(
+        map((e) => e.target.value),
+        debounceTime(1000),
+        distinctUntilChanged()
+      )
+      .subscribe((res) => {
+        console.log(res);
+        this.data = res;
+      });
+  }
+
+<div class="container mt-5">
+  <label>Search : &nbsp;</label>
+  <input type="text" #txt placeholder="Search Value" />
+  <br />
+  Request data : {{ data }}
+</div>
+
+
+2) Interval: Creates an Observable that emits sequential numbers every specified interval of time, on a specified SchedulerLike.
+
+ subscription: Subscription;
+  constructor() {}
+
+  ngOnInit() {
+    const interVal$ = interval(1000);
+    this.subscription = interVal$.subscribe((num) => {
+      console.log('Video' + ' ' + num);
+      if (num >= 5) {
+        this.subscription.unsubscribe();
+      }
+    });
+  }
+
+3) timer: (same as interval) first delay then start and emit data in interval 
+subscription: Subscription;
+  constructor() {}
+
+  ngOnInit() {
+    // timer(delay,interval)
+    const timer$ = timer(3000, 1000);
+    this.subscription = timer$.subscribe((num) => {
+      console.log('Video' + ' ' + num);
+      if (num >= 5) {
+        this.subscription.unsubscribe();
+      }
+    });
+  }
+
+4) toArray : collects all source emissions and emits them as an array
+                    when the source completes.
+
+ex:1
+  ngOnInit() {
+    const source$ = interval(1000);
+    source$.pipe(
+      take(5),
+       toArray()
+       ).subscribe((res) => console.log(res));
+  }
+output: [0,1,2,3,4]
+
+ex:2
+ const obs$ = of('prasad', 'gajanan');
+    obs$.pipe(toArray()).subscribe((res) => console.log(res));
+
+output: ['prasad', 'gajanan']
+
+5) map : take input data and transform or modify  map(x=> x*2)
+      ngOnInit() {
+    const data$ = interval(1000);
+    data$
+      .pipe(
+        take(5),
+        map((x: any) => x * 2),
+        toArray()
+      )
+      .subscribe((res) => console.log(res));
+  }
+
+6) pluck : data ke object ki property ka data pluck(recieve) krne keliye krte hai.
+               apne data ke object ki kisi single value ka data return krta hai.
+
+shorthand of map() operator: 
+ users = [
+    {
+      name: 'prasad',
+      skill: 'angular',
+      job: {
+        title: 'angular developer',
+        ex: '10 years',
+      },
+    },
+    {
+      name: 'gajanan',
+      skill: 'javascript',
+      job: {
+        title: 'javascript developer',
+        ex: '5 years',
+      },
+    },
+    {
+      name: 'sayali',
+      skill: 'reactjs',
+      job: {
+        title: 'reactjs developer',
+        ex: '3 years',
+      },
+    },
+  ];
+  constructor() {}
+
+  ngOnInit() {
+    from(this.users)
+      .pipe(
+        // map((data) => data.name),
+        // pluck('name')
+        pluck('job', 'title')
+      )
+      .subscribe((res) => console.log(res));
+  }
+
+output: angular developer 
+              javascript developer
+               reactjs developer
+
+6) filter: use to filter data base on condition
+
+  users = [
+    {
+      id: 1,
+      name: 'prasad',
+      skill: 'angular',
+      job: {
+        title: 'angular developer',
+        ex: '10 years',
+      },
+    },
+    {
+      id: 2,
+      name: 'gajanan',
+      skill: 'javascript',
+      job: {
+        title: 'javascript developer',
+        ex: '5 years',
+      },
+    },
+    {
+      id: 3,
+      name: 'sayali',
+      skill: 'reactjs',
+      job: {
+        title: 'reactjs developer',
+        ex: '3 years',
+      },
+    },
+  ];
+  constructor() {}
+
+  ngOnInit() {
+    from(this.users)
+      .pipe(filter((data) => data.id < 3))
+      .subscribe((res) => console.log(res));
+  }
+
+
+7) Tap / do : Transparently perform actions or side-effects, such as logging.
+
+Transparently = response pe koyi effect nahi padna chahiye.
+
+uses of Tap operator :
+1) console.log(data)
+2) console.log(response)
+3) change property value => true to false and vice versa
+4) Emit value on observable
+5) perform any other action
+
+ subscription: Subscription;
+  users = ['prasad', 'gajanan', 'patange', 'sayali', 'laksh'];
+  source = interval(1000);
+  constructor() {}
+
+  ngOnInit() {
+    this.subscription = this.source
+      .pipe(
+        tap((res) => {
+          console.log('tap before res => ', res);
+          if (res == 3) {
+            this.subscription.unsubscribe();
+          }
+        }),
+        map((res) => this.users[res]),
+        tap((res) => console.log('tap After res=> ', res))
+      )
+      .subscribe((res) => console.log(res));
+  }
+
+output :
+  tap before res =>  0
+tap After res=>  prasad
+prasad
+and so on...
+
+ 8) 3 use for flatten
+mergeMap => jab hame sare emission ka data flat krke dikhana hota hai
+and every new observable ko subscribe krke sbkuch hame chaliye then use mergeMap
+
+
+concatMap => jab order matter krta hai and hame queue data chaiye hota hai jis queue me request ki hai 
+then use concatMap
+
+swtichMap => hame previous emission ko unsbscribe krke sirf latest
+emission chaiye then use switchMap
+
+ getData(data) {
+    return of(data + ' video uploaded').pipe(delay(1000));
+  }
+  constructor() {}
+
+  ngOnInit() {
+    const source$ = from(['tech', 'comedy', 'news']);
+
+    // MergeMap
+    console.log('MergeMap => ');
+
+    source$
+      .pipe(mergeMap((data) => this.getData(data)))
+      .subscribe((res) => console.log(res));
+
+    // ConcatMap
+    console.log('ConcatMap => ');
+
+    source$
+      .pipe(concatMap((data) => this.getData(data)))
+      .subscribe((res) => console.log(res));
+
+    // SwitchMap
+    console.log('SwitchMap => ');
+
+    source$
+      .pipe(switchMap((data) => this.getData(data)))
+      .subscribe((res) => console.log(res));
+  }
+
+Output : 
+
+mergeMap =>  all data at time combine
+concatMap => after 1 sec one by one
+switchMap => latest Data emit
+
+9) CatchError and ThrowError : 
+ service :
+import { catchError, Observable, throwError } from 'rxjs';
+
+@Injectable()
+export class ApiService {
+  public url: string = 'https://jsonplaceholder.typicode.com/todos/1';
+
+  constructor(public http: HttpClient) {}
+
+  getEmployees(): Observable<any> {
+    return this.http.get<any>(this.url).pipe(catchError(this.errorHandler));
+  }
+
+  errorHandler(error: HttpErrorResponse) {
+    return throwError(error.message || 'Server Error');
+  }
+
+ts:
+ errMsg;
+  
+  constructor(public apiService: ApiService) {}
+
+  ngOnInit() {
+    this.apiService.getEmployees().subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (error) => {
+        this.errMsg = error;
+        console.log(error);
+      }
+    );
+  }
+html:
+<div *ngIf="errMsg">
+  <span class="alert alert-danger">{{ errMsg }}</span>
+</div>
+
+
+9) take , takeLast ,takeUntil :
+take : take data as you pass and then unsbscribe() to observable (mean stop)
+
+ const source$ = interval(1000).pipe(take(5));
+    source$.subscribe((res) => console.log(res));
+
+takeLast : take last data
+data$ = from(['a', 'b', 'c', 'd']);
+
+  ngOnInit() {
+    this.data$.pipe(takeLast(2)).subscribe((res) => console.log(res));
+}
+
+takeUntil : display data according to condition.
+ngOnInit() {
+    const condition1 = timer(5000);
+    const source$ = interval(1000).pipe(
+         takeUntil(condition1),
+);
+    source$.subscribe((res) => console.log(res));
+}
+
+
+What is JWT sign in node JS?
+JWTs are mainly used for authentication.
+ After a user signs in to an application, the application then assigns JWT to that user.
+ Subsequent requests by the user will include the assigned JWT.
+ This token tells the server what routes, services, and resources the user is allowed to access.
