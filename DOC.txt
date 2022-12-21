@@ -1,3 +1,6 @@
+Angular Interview Question =>
+https://www.simplilearn.com/tutorials/angular-tutorial/angular-interview-questions
+
 1) Create Custom Directve =>
    cmd =>  ng g directive <directive_name>
 
